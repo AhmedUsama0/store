@@ -1,0 +1,17 @@
+RewriteEngine On
+DirectoryIndex routes.php
+# if the file or directory exists open it, and if not redirect them to routes
+# except if the file is details/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# if the user request anything redirect him to routes.php
+# L means that is the last rule which match the above conditions
+# RewriteRule !^details routes.php 
+
+RewriteRule !^details/([0-9a-zA-Z]+) routes.php [L]
+RewriteRule ^details/([0-9a-zA-Z]+) details.php?productID=$1 
+
+# if user request view it will redirect him to view.php
+# RewriteRule ^view view.php [L]
+# RewriteRule ^login login.php [L]
+# RewriteRule ^logout logout.php [L]
